@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafio Sierra LaTarx | Portfólio & Apresentação</title>
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #373b3e;            
+      --card-bg: rgba(255, 255, 255, 0.05); 
+      --card-border: rgba(255, 255, 255, 0.1);
+      
+      --primary-color: #137a7f;       
+      --secondary-color: #86cecb;     
+      --text-main: #f3f4f6;           
+      --text-muted: #9ca3af;          
+      
+      --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1; 
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 99px;
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 1rem;
+      z-index: 10;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Botões das Abas na Navegação */
+    nav button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-left: 1rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    nav button:hover {
+      color: var(--text-main);
+    }
+
+    /* Estilo do botão da aba selecionada */
+    nav button.active {
+      color: #fff;
+      background: rgba(134, 206, 203, 0.2);
+      border: 1px solid var(--secondary-color);
+    }
+    .tab-content {
+      display: none; /* Esconde o conteúdo das abas por padrão */
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block; /* Exibe apenas a aba ativa */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Fraunces', cursive;
+    }  
+     
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem 3rem 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .cta-buttons { flex-direction: column; }
+      header { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="container">
+    <header>
+      <div class="logo">Mafio</div>
+      <nav>
+        <button class="tab-btn active" onclick="openTab(event, 'sobre')">Sobre Mim</button>
+        <button class="tab-btn" onclick="openTab(event, 'projetos')">Projetos</button>
+        <button class="tab-btn" onclick="openTab(event, 'fotografia')">Fotografia & Edição</button>
+      </nav>
+    </header>
+    <section class="hero">
+      <span class="badge">Oi, que bom te ver por aqui!</span>
+      <h1>Tudo aqui foi desenvolvido por mim, <span>aproveite!</span></h1>
+      <p>Dev backend, gamer, modder, fotógrafo e editor</p>
+      
+      <div class="cta-buttons">
+        <a href="./DearDiary/" class="btn btn-primary">Diário</a>
+        <a href="https://discord.gg/colt" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Discord</a>
+      </div>
+    </section>
+
+    <div id="sobre" class="tab-content active">
+      <h2 class="section-title">😁 Atos notórios:</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>📶 Administração de servidores</h3>
+          <p>Durante vários anos, administrei diversos tipos de servidores, tanto in-game quanto fora.<br>O que me forneceu muita bagagem para lidar com pessoas.</p>
+        </div>
+        <div class="card">
+          <h3>🚀 Loja digital</h3>
+          <p>Modero atualmente uma loja digital, Colt Store, junto de alguns amigos.<br>A qual ajudei parcialmente na concepção e fornecimento de recursos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="projetos" class="tab-content">
+      <h2 class="section-title">🛠️ Projetos & Desenvolvimento</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>💻 MikuMenu</h3>
+          <p>Desenvolvimento de um modmenu usando base pública, a fim de aprimorar a experiência em um certo jogo.</p>
+        </div>
+        <div class="card">
+          <h3>🐍 Backend & APIs</h3>
+          <p>Criação de soluções em backend, integração de dados e arquitetura de sistemas otimizados.</p>
+        </div>
+        <div class="card">
+          <h3>🎮 Modding</h3>
+          <p>Criação e modificação de scripts e utilitários voltados à otimização e novas mecânicas de jogos.</p>
+        </div>
+        <div class="card">
+          <h3>🧠 Engenharia de IA & Machine Learning</h3>
+          <p>Integração de modelos de linguagem, criação de rotinas automatizadas no backend e implementação de soluções focadas em IA para problemas reais.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="fotografia" class="tab-content">
+      <h2 class="section-title">📸 Fotografia & Edição</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>📷 Portfólio Visual</h3>
+          <p>Registros de fotografia, tratamentos de cor e manipulação visual digital.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© <span id="year"></span> Mafio Sierra LaTarx. Todos os direitos reservados. ©️</p>
+  </footer>
+
+  <script>
+  
+    function openTab(event, tabId) {
+      // 1. Esconde todo o conteúdo das abas
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 2 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            const opacity = 1 - (distance / 120);
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.25})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
